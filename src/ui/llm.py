@@ -1,13 +1,8 @@
-from langchain import ConversationChain, LLMChain, OpenAI, PromptTemplate
 from langchain.chains import ConversationChain
-from langchain.chains.conversation.memory import ConversationSummaryBufferMemory
+from langchain.chains.conversation.memory import ConversationalBufferWindowMemory
 from langchain.llms import HuggingFacePipeline
-from transformers import (
-    AutoModelForCausalLM,
-    AutoModelForSeq2SeqLM,
-    AutoTokenizer,
-    pipeline,
-)
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
+
 
 def load_chain():
     """Logic for loading the chain you want to use should go here."""
@@ -20,11 +15,10 @@ def load_chain():
 
     llm = HuggingFacePipeline(pipeline=pipe)
 
+    input_key = "input"
+    output_key = "response"
+    memory = ConversationalBufferWindowMemory(k=3, output_key=output_key, input_key=input_key)
     chain = ConversationChain(
-        llm=llm,
-        verbose=True,
-        memory=ConversationSummaryBufferMemory(
-            llm=llm, output_key="response", input_key="input"
-        ),
+        llm=llm, verbose=True, memory=memory, output_key=output_key, input_key=input_key
     )
     return chain

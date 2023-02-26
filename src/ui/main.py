@@ -1,10 +1,15 @@
 """Python file to serve as the frontend"""
+import rich
 import streamlit as st
 from llm import load_chain
-import rich
 from streamlit_chat import message
 
-chain = load_chain()
+if "model" not in st.session_state:
+    chain = load_chain()
+    st.session_state["model"] = chain
+
+else:
+    chain = st.session_state["model"]
 
 # From here down is all the StreamLit UI.
 st.set_page_config(page_title="LangChain Demo", page_icon=":robot:")
@@ -27,8 +32,7 @@ user_input = get_text()
 if user_input:
     rich.print("user input:", user_input)
     output = chain.predict(input=user_input)
-    rich.print(chain.memory.buffer)
-    rich.print(chain.memory.moving_summary_buffer)
+    rich.print("buffer:", chain.memory.buffer)
 
     st.session_state.past.append(user_input)
     st.session_state.generated.append(output)
