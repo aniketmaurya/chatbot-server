@@ -7,7 +7,6 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 def load_chain():
     """Logic for loading the chain you want to use should go here."""
 
-    model_id = "facebook/blenderbot_small-90M"
     model_id = "google/flan-T5-base"
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
