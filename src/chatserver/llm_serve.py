@@ -7,8 +7,12 @@ from pydantic import BaseModel, Field
 
 def load_hf_llm():
     from langchain.llms import HuggingFacePipeline
-    from transformers import (AutoModelForCausalLM, AutoModelForSeq2SeqLM,
-                              AutoTokenizer, pipeline)
+    from transformers import (
+        AutoModelForCausalLM,
+        AutoModelForSeq2SeqLM,
+        AutoTokenizer,
+        pipeline,
+    )
 
     model_id = "google/flan-T5-base"
     tokenizer = AutoTokenizer.from_pretrained(model_id)

@@ -1,8 +1,10 @@
 """Python file to serve as the frontend"""
 import rich
 import streamlit as st
-from chatserver.chatbot_chain import lit_chain
 from streamlit_chat import message
+
+from chatserver.chatbot_chain import lit_chain
+
 
 def run(lightning_app_state):
     print("lightning_app_state", lightning_app_state)
@@ -24,11 +26,9 @@ def run(lightning_app_state):
     if "past" not in st.session_state:
         st.session_state["past"] = []
 
-
     def get_text():
         input_text = st.text_input("You: ", "Hello, how are you?", key="input")
         return input_text
-
 
     user_input = get_text()
 

@@ -1,5 +1,6 @@
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationSummaryBufferMemory
+
 from chatserver.lightning_client import LitServer
 
 
@@ -16,5 +17,6 @@ def load_chain(llm):
     )
     return chain
 
-def lit_chain(url:str):
+
+def lit_chain(url: str):
     return load_chain(LitServer(url=url))

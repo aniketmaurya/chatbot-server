@@ -1,7 +1,8 @@
 import lightning as L
 import lightning.app.frontend as frontend
-from chatserver.ui import main
+
 from chatserver.llm_serve import LLMServe
+from chatserver.ui import main
 
 
 class ChatBotApp(L.LightningFlow):
@@ -17,5 +18,6 @@ class ChatBotApp(L.LightningFlow):
 
     def configure_layout(self):
         return frontend.StreamlitFrontend(render_fn=main.run)
+
 
 app = L.LightningApp(ChatBotApp())
