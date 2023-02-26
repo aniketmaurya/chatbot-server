@@ -18,7 +18,7 @@ def run(lightning_app_state):
 
     # From here down is all the StreamLit UI.
     st.set_page_config(page_title="LangChain Demo", page_icon=":robot:")
-    st.header("LangChain Demo")
+    st.header("ChatBot Demo")
 
     if "generated" not in st.session_state:
         st.session_state["generated"] = []

@@ -1,4 +1,5 @@
 """Wrapper around Lightning App."""
+import json
 import logging
 from typing import Any, Dict, List, Mapping, Optional
 
@@ -7,6 +8,7 @@ from langchain.llms.base import LLM
 from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class LitServer(LLM, BaseModel):
@@ -16,8 +18,15 @@ class LitServer(LLM, BaseModel):
         """Run the LLM on the given prompt and input."""
         if self.url == "":
             raise Exception("Server URL not set!")
-        response = requests.post(url=self.url + "/predict", json={"prompt": prompt})
-        response.raise_for_status()
+
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+        assert isinstance(prompt, str)
+        json_data = {"prompt": prompt}
+        response = requests.post(url=self.url + "/predict", headers=headers, json=json_data)
+        logger.error(response.raise_for_status())
         return response.json()["text"]
 
     @property
