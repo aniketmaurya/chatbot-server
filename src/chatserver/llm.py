@@ -3,7 +3,7 @@ from langchain.chains.conversation.memory import ConversationSummaryBufferMemory
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 
-def hf_pipeline():
+def load_hf_llm():
     model_id = "google/flan-T5-base"
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
@@ -12,11 +12,10 @@ def hf_pipeline():
     return HuggingFacePipeline(pipeline=pipe)
 
 
-
 def load_chain():
     """Logic for loading the chain you want to use should go here."""
 
-    llm = hf_pipeline()
+    llm = load_hf_llm()
 
     input_key = "input"
     output_key = "response"

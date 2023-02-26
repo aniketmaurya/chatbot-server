@@ -1,7 +1,7 @@
 """Python file to serve as the frontend"""
 import rich
 import streamlit as st
-from llm import load_chain
+from chatserver.llm import load_chain
 from streamlit_chat import message
 
 if "model" not in st.session_state:
