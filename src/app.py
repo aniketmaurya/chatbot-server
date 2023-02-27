@@ -1,8 +1,8 @@
 import lightning as L
 import lightning.app.frontend as frontend
 
-from chatserver.llm_serve import LLMServe
-from chatserver.ui import main
+from chatserver.components import LLMServe
+from chatserver.ui import ui_render_fn
 
 
 class ChatBotApp(L.LightningFlow):
@@ -17,7 +17,7 @@ class ChatBotApp(L.LightningFlow):
             self.llm_url = self.llm_serve.url
 
     def configure_layout(self):
-        return frontend.StreamlitFrontend(render_fn=main.run)
+        return frontend.StreamlitFrontend(render_fn=ui_render_fn)
 
 
 app = L.LightningApp(ChatBotApp())
