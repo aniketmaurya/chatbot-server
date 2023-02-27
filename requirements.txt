@@ -1,7 +1,0 @@
-langchain
-openai
-streamlit
-streamlit-chat
-lightning
-transformers
-fastapi

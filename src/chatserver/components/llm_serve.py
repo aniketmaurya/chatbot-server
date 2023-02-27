@@ -2,13 +2,10 @@ import logging
 from typing import Any
 
 import lightning as L
-import uvicorn
-from fastapi import FastAPI
 from lightning.app.components import PythonServer, Text
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 
 def load_hf_llm():

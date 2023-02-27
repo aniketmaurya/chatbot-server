@@ -1,7 +1,7 @@
 import lightning as L
 import lightning.app.frontend as frontend
 
-from chatserver.llm_serve import LLMServe
+from chatserver.components import LLMServe
 from chatserver.ui import main
 
 
