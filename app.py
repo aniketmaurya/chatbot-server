@@ -8,7 +8,9 @@ from chatserver.ui import ui_render_fn
 class ChatBotApp(L.LightningFlow):
     def __init__(self):
         super().__init__()
-        self.llm_serve = LLMServe()
+        self.llm_serve = LLMServe(
+            model_id="google/flan-t5-large", cloud_compute=L.CloudCompute("gpu")
+        )
         self.llm_url = ""
 
     def run(self):
