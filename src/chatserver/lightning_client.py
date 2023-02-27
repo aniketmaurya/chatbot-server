@@ -20,12 +20,14 @@ class LitServer(LLM, BaseModel):
             raise Exception("Server URL not set!")
 
         headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
+            "accept": "application/json",
+            "Content-Type": "application/json",
         }
         assert isinstance(prompt, str)
         json_data = {"prompt": prompt}
-        response = requests.post(url=self.url + "/predict", headers=headers, json=json_data)
+        response = requests.post(
+            url=self.url + "/predict", headers=headers, json=json_data
+        )
         logger.error(response.raise_for_status())
         return response.json()["text"]
 

@@ -38,22 +38,6 @@ class LLMServe(PythonServer):
     def predict(self, request: PromptSchema) -> Any:
         return {"text": self._model(request.prompt)}
 
-    def run(self, *args: Any, **kwargs: Any) -> Any:
-        """Run method takes care of configuring and setting up a FastAPI server behind the scenes.
-
-        Normally, you don't need to override this method.
-        """
-        self.setup(*args, **kwargs)
-
-        fastapi_app = FastAPI()
-        self._attach_predict_fn(fastapi_app)
-
-        self.ready = True
-        logger.info(
-            f"Your {self.__class__.__qualname__} has started. View it in your browser: http://{self.host}:{self.port}"
-        )
-        uvicorn.run(app=fastapi_app, host=self.host, port=self.port, log_level="debug")
-
 
 if __name__ == "main":
     app = L.LightningApp(LLMServe())
