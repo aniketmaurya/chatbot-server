@@ -1,14 +1,12 @@
 """Wrapper around Lightning App."""
-import json
 import logging
-from typing import Any, Dict, List, Mapping, Optional
+from typing import List, Optional
 
 import requests
 from langchain.llms.base import LLM
 from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 
 class LitServer(LLM, BaseModel):
