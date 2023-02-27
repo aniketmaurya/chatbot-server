@@ -17,10 +17,7 @@ class ChatBotApp(L.LightningFlow):
             self.llm_url = self.llm_serve.url
 
     def configure_layout(self):
-        if self.llm_url:
-            return frontend.StreamlitFrontend(render_fn=main.run)
-        else:
-            return []
+        return frontend.StreamlitFrontend(render_fn=main.run)
 
 
 app = L.LightningApp(ChatBotApp())
