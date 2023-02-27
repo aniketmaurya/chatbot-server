@@ -9,7 +9,7 @@ from pydantic import BaseModel
 logger = logging.getLogger(__name__)
 
 
-class LitServer(LLM, BaseModel):
+class LightningChain(LLM, BaseModel):
     url: str = ""
 
     def _call(self, prompt: str, stop: Optional[List[str]] = None) -> str:
