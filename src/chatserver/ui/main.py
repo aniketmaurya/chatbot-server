@@ -7,6 +7,10 @@ from chatserver.chatbot_chain import lit_chain
 
 
 def run(lightning_app_state):
+    if not lightning_app_state.llm_url:
+        st.info("Waiting for server to get ready... :clock:")
+        return
+
     print("lightning_app_state", lightning_app_state)
 
     if "model" not in st.session_state:
