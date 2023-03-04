@@ -9,7 +9,7 @@ class ChatBotApp(L.LightningFlow):
     def __init__(self):
         super().__init__()
         self.llm_serve = LLMServe(
-            model_id="google/flan-t5-large", cloud_compute=L.CloudCompute("gpu")
+            model_id="google/flan-ul2", cloud_compute=L.CloudCompute("gpu")
         )
         self.llm_url = ""
 
